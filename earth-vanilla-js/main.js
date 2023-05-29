@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import {ThreeJSOverlayView} from '@googlemaps/three';
 const scene = new THREE.Scene(); //create scene 
 // create camera with perspective  ( fov , aspect ratio , near , far )
 // fov => angle of view
@@ -7,6 +6,7 @@ const scene = new THREE.Scene(); //create scene
 // near => near clipping plane 
 // far => far clipping plane
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+camera.position.z = 14;
 
 // create renderer
 const renderer = new THREE.WebGLRenderer({antialias: true});
@@ -16,17 +16,24 @@ document.body.appendChild( renderer.domElement );
  
 // create sphere 
 const geometry = new THREE.SphereGeometry( 5, 50, 50);
-const texture = new THREE.TextureLoader().load( "earth.jpg" );
-const material = new THREE.MeshBasicMaterial( { map: texture  } );
+const texture = new THREE.TextureLoader().load( "img/earth.jpg" );
+const bump = new THREE.TextureLoader().load( "img/bump.jpg" );
+const material = new THREE.MeshBasicMaterial( { map: texture, bump: bump  } );
 const sphere = new THREE.Mesh( geometry, material );
+
+// ambient light
+const ambientLight = new THREE.AmbientLight( 0xffffff, 0.2 );
+// create light
+const light = new THREE.PointLight( 0xffffff, 0.9 );
+light.position.set( 5, 3, 5 );
 
 // create group
 const group = new THREE.Group();
 group.add(sphere);
+group.add(light);
+group.add(ambientLight);
 scene.add(group);
 
-
-camera.position.z = 14;
 
 // set camera position of z axis 
 const mouse = {

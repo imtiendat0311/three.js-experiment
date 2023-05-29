@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@googlemaps/three": "^4.0.1",
     "three": "^0.152.2"
   },
   "devDependencies": {
