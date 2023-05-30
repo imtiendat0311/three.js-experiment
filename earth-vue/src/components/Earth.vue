@@ -44,9 +44,9 @@ onMounted(() => {
   scene.add(group);
 
   function animate() {
+    group.rotation.y -= 0.001;
     requestAnimationFrame( animate );
     renderer.render(scene, camera);
-
   }
   animate();
 });
