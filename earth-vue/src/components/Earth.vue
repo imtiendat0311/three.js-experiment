@@ -4,6 +4,8 @@
 <script setup lang="ts">
 import * as THREE from "three";
 import { onMounted } from "vue";
+import earthUrl from "../assets/earth.jpg";
+import bumpUrl from "../assets/elevate.jpg";
 onMounted(() => {
   const scene = new THREE.Scene(); //create scene
   const camera = new THREE.PerspectiveCamera(
@@ -24,21 +26,28 @@ onMounted(() => {
 
   const geometry = new THREE.SphereGeometry(5, 50, 50);
   const material = new THREE.MeshStandardMaterial({
-    map: new THREE.TextureLoader().load("./src/assets/earth.jpg"),
-    bumpMap: new THREE.TextureLoader().load("./src/assets/elevate.jpg"),
+    map: new THREE.TextureLoader().load(earthUrl),
+    bumpMap: new THREE.TextureLoader().load(bumpUrl),
   });
   const earth = new THREE.Mesh(geometry, material);
+
   // ambient light
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
   // create light
   const light = new THREE.PointLight(0xffffff, 0.9);
   light.position.set(5, 3, 5);
+  
   const group = new THREE.Group();
   group.add(earth);
   group.add(light);
   group.add(ambientLight);
   scene.add(group);
 
-  renderer.render(scene, camera);
+  function animate() {
+    requestAnimationFrame( animate );
+    renderer.render(scene, camera);
+
+  }
+  animate();
 });
 </script>
