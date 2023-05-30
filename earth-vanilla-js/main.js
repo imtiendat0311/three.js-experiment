@@ -17,8 +17,8 @@ document.body.appendChild( renderer.domElement );
 // create sphere 
 const geometry = new THREE.SphereGeometry( 5, 50, 50);
 const texture = new THREE.TextureLoader().load( "img/earth.jpg" );
-const bump = new THREE.TextureLoader().load( "img/bump.jpg" );
-const material = new THREE.MeshBasicMaterial( { map: texture, bump: bump  } );
+const bump = new THREE.TextureLoader().load( "img/elevate.jpg" );
+const material = new THREE.MeshStandardMaterial( { map: texture, bumpMap: bump  } );
 const sphere = new THREE.Mesh( geometry, material );
 
 // ambient light
@@ -36,25 +36,14 @@ scene.add(group);
 
 
 // set camera position of z axis 
-const mouse = {
-	x: undefined,
-	y: undefined
-}
 
-function animate() {
+
+ function animate() {
 	requestAnimationFrame( animate );
-	//sphere.rotation.x += 0.01;
-	sphere.rotation.y += 0.001;
+// 	sphere.rotation.x += 0.01;
+// 	sphere.rotation.y += 0.001;
 	renderer.render( scene, camera );
-	group.rotation.y = mouse.x * 0.5;
-	group.rotation.x = mouse.y * 0.5;
-}
+
+ }
 
 animate();
-
-// mouse listener
-addEventListener("mousemove", (e) => {
-	mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-	mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-
-})
