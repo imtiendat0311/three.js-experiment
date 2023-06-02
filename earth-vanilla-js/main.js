@@ -18,7 +18,7 @@ document.body.appendChild( renderer.domElement );
 const geometry = new THREE.SphereGeometry( 5, 50, 50);
 const texture = new THREE.TextureLoader().load( "img/earth.jpg" );
 const bump = new THREE.TextureLoader().load( "img/elevate.jpg" );
-const material = new THREE.MeshStandardMaterial( { map: texture, bumpMap: bump  } );
+const material = new THREE.MeshStandardMaterial( { map: texture } );
 const sphere = new THREE.Mesh( geometry, material );
 
 // ambient light

@@ -10,6 +10,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import earthUrl from "../assets/earth.jpg";
 import bumpUrl from "../assets/elevate.jpg";
 import backgroundUrl from "../assets/starfield.jpg";
+
 onMounted(() => {
   const scene = new THREE.Scene(); //create scene
   // scene.background = new THREE.TextureLoader().load(backgroundUrl);
@@ -29,6 +30,7 @@ onMounted(() => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(0x000000, 1);
+
   const geometry = new THREE.SphereGeometry(5, 50, 50);
   const material = new THREE.MeshStandardMaterial({
     map: new THREE.TextureLoader().load(earthUrl),
@@ -43,6 +45,7 @@ onMounted(() => {
     side: THREE.BackSide,
   });
   const star = new THREE.Mesh(starSphere, starMaterial)
+
   // ambient light
    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
   // create light
@@ -57,13 +60,11 @@ onMounted(() => {
   scene.add(ambientLight);
   scene.add(light);
 
-
   const controls = new OrbitControls(camera, renderer.domElement);
 
   function animate() {
     earth.rotation.y -= 0.001;
     light.rotation.y -= 0.001;
-  
     requestAnimationFrame( animate );
     renderer.render(scene, camera);
     controls.update();

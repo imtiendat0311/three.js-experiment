@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "three": "^0.152.2",
+    "two.js": "^0.8.10",
     "vue": "^3.2.47"
   },
   "devDependencies": {

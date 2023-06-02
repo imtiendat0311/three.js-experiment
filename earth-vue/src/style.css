@@ -78,3 +78,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#earth{
+  position: absolute;
+  z-index: 0;
+  left: 5px;
+  top:5px;
+}
+#two{
+  position: absolute;
+  z-index: 1;
+}
